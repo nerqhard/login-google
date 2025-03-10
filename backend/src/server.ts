@@ -23,26 +23,26 @@ const oauth2Client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_SECRET
 );
 
-// Interface cho request body
+// Interface for request body
 interface GoogleAuthRequest extends Request {
   body: {
     credential: string;
   };
 }
 
-// Kiểm tra và xác thực Google token
+// Verify and authenticate Google token
 router.post('/api/auth/google', async (req: GoogleAuthRequest, res: Response) => {
   try {
     const { credential } = req.body;
 
-    // Xác thực token với Google
+    // Verify token with Google
     const ticket = await oauth2Client.getTokenInfo(credential);
 
     if (!ticket.email) {
       return res.status(400).json({ message: 'Invalid token' });
     }
 
-    // Tạo JWT token
+    // Create JWT token
     const token = jwt.sign(
       {
         email: ticket.email,
@@ -52,13 +52,13 @@ router.post('/api/auth/google', async (req: GoogleAuthRequest, res: Response) =>
       { expiresIn: '1d' }
     );
 
-    // Trả về thông tin người dùng và token
+    // Return user information and token
     res.json({
       token,
       user: {
         email: ticket.email,
-        name: ticket.email.split('@')[0],
-        picture: null
+        name: ticket.email.split('@')[0], // Use the part before @ as name
+        picture: null // Picture is not available in TokenInfo
       }
     });
   } catch (error) {

@@ -1,8 +1,8 @@
-# Ứng dụng Đăng nhập Google OAuth
+# Google OAuth Login Application
 
-Ứng dụng web sử dụng React và Node.js với tính năng đăng nhập qua Google OAuth 2.0.
+A web application using React and Node.js with Google OAuth 2.0 authentication.
 
-## Cấu trúc dự án
+## Project Structure
 
 ```
 .
@@ -10,45 +10,55 @@
 └── backend/         # Node.js backend
 ```
 
-## Yêu cầu hệ thống
+## System Requirements
 
-- Node.js (v14 trở lên)
-- npm hoặc yarn
+- Node.js (v14 or higher)
+- npm or yarn
 
-## Cài đặt và Cấu hình
+## Installation and Configuration
 
-### 1. Cấu hình Google OAuth
+### 1. Google OAuth Setup
 
-1. Truy cập [Google Cloud Console](https://console.cloud.google.com)
-2. Tạo một dự án mới hoặc chọn dự án có sẵn
-3. Vào mục "APIs & Services" > "Credentials"
+1. Visit [Google Cloud Console](https://console.cloud.google.com)
+2. Create a new project or select an existing one
+3. Go to "APIs & Services" > "Credentials"
 4. Click "Create Credentials" > "OAuth client ID"
-5. Chọn "Web application"
-6. Thêm các Authorized redirect URIs:
+5. Select "Web application"
+6. Add Authorized redirect URIs:
    - http://localhost:3000
-7. Lưu lại Client ID và Client Secret
+7. Save the Client ID and Client Secret
 
-### 2. Cài đặt Frontend
+### 2. Frontend Setup
 
 ```bash
 cd frontend
 npm install
 ```
 
-Tạo file `.env` trong thư mục `frontend`:
-```
-VITE_GOOGLE_CLIENT_ID=your_google_client_id
-VITE_API_URL=http://localhost:5000
+Copy `.env.example` to `.env` and update the values:
+```bash
+cp .env.example .env
 ```
 
-### 3. Cài đặt Backend
+Configure in `.env` file:
+```
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+VITE_API_URL=http://localhost:5001
+```
+
+### 3. Backend Setup
 
 ```bash
 cd backend
 npm install
 ```
 
-Tạo file `.env` trong thư mục `backend`:
+Copy `.env.example` to `.env` and update the values:
+```bash
+cp .env.example .env
+```
+
+Configure in `.env` file:
 ```
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
@@ -57,25 +67,25 @@ FRONTEND_URL=http://localhost:3000
 PORT=5001
 ```
 
-## Chạy ứng dụng
+## Running the Application
 
-1. Khởi động Backend:
+1. Start the Backend:
 ```bash
 cd backend
 npm start
 ```
 
-2. Khởi động Frontend (mở terminal mới):
+2. Start the Frontend (in a new terminal):
 ```bash
 cd frontend
 npm run dev
 ```
 
-Truy cập ứng dụng tại http://localhost:3000
+Access the application at http://localhost:3000
 
-## Lưu ý
+## Notes
 
-- Đảm bảo đã cấu hình đúng Google OAuth credentials
-- Điền đầy đủ thông tin trong các file .env
-- Backend API chạy ở cổng 5001
-- Frontend dev server chạy ở cổng 3000 
+- Ensure Google OAuth credentials are properly configured
+- Do not commit `.env` files to git
+- Backend API runs on port 5001
+- Frontend dev server runs on port 3000 

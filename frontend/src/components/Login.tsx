@@ -8,23 +8,23 @@ const Login = () => {
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        // Gửi access token đến backend để xác thực
+        // Send access token to backend for verification
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/google`, {
           credential: tokenResponse.access_token,
         });
 
-        // Lưu JWT token từ backend
+        // Save JWT token from backend
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
 
-        // Chuyển hướng đến trang profile
+        // Redirect to profile page
         navigate('/profile');
       } catch (error) {
-        console.error('Lỗi đăng nhập:', error);
+        console.error('Login error:', error);
       }
     },
     onError: () => {
-      console.log('Đăng nhập thất bại');
+      console.log('Login failed');
     }
   });
 
@@ -35,15 +35,15 @@ const Login = () => {
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: '100vh',
+      backgroundColor: '#f5f5f5'
     }}>
       <div style={{
         padding: '2rem',
         backgroundColor: 'white',
         borderRadius: '8px',
-        color: 'black',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
       }}>
-        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Đăng nhập</h1>
+        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Login</h1>
         <button
           onClick={() => login()}
           style={{
@@ -64,7 +64,7 @@ const Login = () => {
             alt="Google"
             style={{ width: '20px', height: '20px' }}
           />
-          Đăng nhập với Google
+          Login with Google
         </button>
       </div>
     </div>
