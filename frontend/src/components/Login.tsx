@@ -35,11 +35,11 @@ const Login = () => {
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: '100vh',
-      backgroundColor: '#f5f5f5'
     }}>
       <div style={{
         padding: '2rem',
         backgroundColor: 'white',
+        color: 'black',
         borderRadius: '8px',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
       }}>
